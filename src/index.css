@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+body {
+  @apply bg-gray-900 text-white;
+}
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.7;
+  pointer-events: none;
+  transition: background-color 0.3s ease;
+}
+
+
+.port-card {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures the image fills the container while maintaining its aspect ratio */
+  border-radius: 8px; /* Optional: adds rounded corners */
+}
+
+
+
+
+.blob-1 {
+  
+  width: 600px;
+  height: 600px;
+  left: -200px;
+  top: -100px;
+  animation: float1 8s ease-in-out infinite;
+  background: rgba(236, 72, 153, 0.25);
+}
+
+
+.blob-2 {
+  width: 350px;
+  height: 350px;
+  right: -100px;
+  top: 200px;
+  animation: float2 10s ease-in-out infinite;
+    background:  rgba(255, 165, 0, 0.5);;
+
+}
+
+.blob-3 {
+  width: 200px;
+  height: 200px;
+  left: 60%;
+  bottom: 450px;
+  animation: float3 12s ease-in-out infinite;
+  background: rgba(100, 149, 237, 0.5);
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(50px, 50px) rotate(180deg); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-30px, 30px) rotate(-180deg); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(20px, -20px) rotate(90deg); }
+}
+
+.code-block {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 20px;
+  font-family: 'Fira Code', monospace;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.code-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(90deg, #ff69b4 0%, #ff1493 100%);
+  opacity: 0.1;
+}
+
+.code-line {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  #floating-code-shape {
+      display:none
+  }
+}
+
+
+
+.code-comment { color: #6a737d; }
+.code-keyword { color: #ff79c6; }
+.code-string { color: #f1fa8c; }
+.code-function { color: #50fa7b; }
+
+.dark {
+  @apply bg-gray-900;
+}
+
+.dark .bg-white {
+  @apply bg-gray-800 text-white;
+}
+
+.dark .text-gray-900 {
+  @apply text-white;
+}
+
+.dark .text-gray-800 {
+  @apply text-gray-100;
+}
+
+.dark .text-gray-700 {
+  @apply text-gray-300;
+}
+
+.dark .text-gray-600 {
+  @apply text-gray-400;
+}
+
+.dark .border-gray-300 {
+  @apply border-gray-600;
+}
+
+.dark .bg-gray-50 {
+  @apply bg-gray-900;
+}
+
+.dark .bg-gray-100 {
+  @apply bg-gray-800;
+}
+
+.dark .from-gray-50 {
+  @apply from-gray-900;
+}
+
+.dark .to-gray-100 {
+  @apply to-gray-800;
+}
