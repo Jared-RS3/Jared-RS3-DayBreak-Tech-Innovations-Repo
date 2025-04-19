@@ -68,14 +68,16 @@ export default function Navbar({
               </Link>
             ))}
 
-            <RouterLink
-              to="/careers"
+            <a
+              href="/careers"
+              target="_blank"
+              rel="noopener noreferrer"
               className={`hover:text-pink-600 transition-colors duration-300 cursor-pointer ${
                 darkMode ? "text-gray-300" : "text-gray-700"
               }`}
             >
               Careers
-            </RouterLink>
+            </a>
 
             <a href="#contact">
               <motion.button
