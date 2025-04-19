@@ -1,43 +1,43 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import CountUp from 'react-countup';
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import CountUp from "react-countup";
 
 export function AboutSection() {
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ['start start', 'end start'],
+    offset: ["start start", "end start"],
   });
 
   const isInView = useInView(heroRef, { once: true });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   const stats = [
     {
       value: 98,
-      suffix: '%',
-      title: 'On-Time Project Delivery',
-      desc: 'Consistently meeting deadlines with agile execution',
+      suffix: "%",
+      title: "On-Time Project Delivery",
+      desc: "Consistently meeting deadlines with agile execution",
     },
     {
       value: 10,
-      suffix: '+',
-      title: 'Industries Served',
-      desc: 'From fintech to e-commerce, SaaS, and healthtech',
+      suffix: "+",
+      title: "Industries Served",
+      desc: "From fintech to e-commerce, SaaS, and healthtech",
     },
     {
       value: 1,
-      suffix: 'M+',
-      title: 'End-Users Impacted',
-      desc: 'Scalable solutions built to perform globally',
+      suffix: "M+",
+      title: "End-Users Impacted",
+      desc: "Scalable solutions built to perform globally",
     },
     {
       value: 90,
-      suffix: '%+',
-      title: 'Client Retention Rate',
-      desc: 'Happy clients come back — again and again',
+      suffix: "%+",
+      title: "Client Retention Rate",
+      desc: "Happy clients come back — again and again",
     },
   ];
 
@@ -64,7 +64,7 @@ export function AboutSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {stats.map((stat, i) => ( 
+          {stats.map((stat, i) => (
             <motion.div
               key={stat.title}
               className="flex flex-col items-center text-white"

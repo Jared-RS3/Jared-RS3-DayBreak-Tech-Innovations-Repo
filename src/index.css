@@ -33,8 +33,6 @@ body {
   @apply bg-gray-900 text-white;
 }
 
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -48,7 +46,6 @@ body {
   transition: background-color 0.3s ease;
 }
 
-
 .port-card {
   width: 100%;
   height: auto;
@@ -56,11 +53,7 @@ body {
   border-radius: 8px; /* Optional: adds rounded corners */
 }
 
-
-
-
 .blob-1 {
-  
   width: 600px;
   height: 600px;
   left: -200px;
@@ -69,15 +62,13 @@ body {
   background: rgba(236, 72, 153, 0.25);
 }
 
-
 .blob-2 {
   width: 350px;
   height: 350px;
   right: -100px;
   top: 200px;
   animation: float2 10s ease-in-out infinite;
-    background:  rgba(255, 165, 0, 0.5);;
-
+  background: rgba(255, 165, 0, 0.5);
 }
 
 .blob-3 {
@@ -90,32 +81,47 @@ body {
 }
 
 @keyframes float1 {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(50px, 50px) rotate(180deg); }
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(50px, 50px) rotate(180deg);
+  }
 }
 
 @keyframes float2 {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(-30px, 30px) rotate(-180deg); }
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(-30px, 30px) rotate(-180deg);
+  }
 }
 
 @keyframes float3 {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(20px, -20px) rotate(90deg); }
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(20px, -20px) rotate(90deg);
+  }
 }
 
 .code-block {
   background: #1a1a1a;
   border-radius: 8px;
   padding: 20px;
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .code-block::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -134,16 +140,22 @@ body {
 
 @media (max-width: 640px) {
   #floating-code-shape {
-      display:none
+    display: none;
   }
 }
 
-
-
-.code-comment { color: #6a737d; }
-.code-keyword { color: #ff79c6; }
-.code-string { color: #f1fa8c; }
-.code-function { color: #50fa7b; }
+.code-comment {
+  color: #6a737d;
+}
+.code-keyword {
+  color: #ff79c6;
+}
+.code-string {
+  color: #f1fa8c;
+}
+.code-function {
+  color: #50fa7b;
+}
 
 .dark {
   @apply bg-gray-900;

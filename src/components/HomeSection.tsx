@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 export function HomeSection() {
   return (
@@ -26,7 +25,7 @@ export function HomeSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          We Ensure you <span className="text-pink-500">Make More</span>, while{' '}
+          We Ensure you <span className="text-pink-500">Make More</span>, while{" "}
           <span className="text-pink-500">Working Less</span>
         </motion.h1>
 
@@ -58,16 +57,16 @@ export function HomeSection() {
         animate={{
           rotateY: [0, 5, -5, 5, 0],
           rotateX: [0, 3, -3, 3, 0],
-          x: ['0%', '2%', '-2%', '0%'],
-          y: ['0%', '3%', '-2%', '0%'],
+          x: ["0%", "2%", "-2%", "0%"],
+          y: ["0%", "3%", "-2%", "0%"],
           opacity: [1, 0.8, 1],
         }}
         transition={{
           duration: 6,
           repeat: Infinity,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
-        style={{ transformOrigin: 'center' }}
+        style={{ transformOrigin: "center" }}
       >
         <div className="bg-[#1e1e1e] text-white p-4 rounded-xl shadow-xl font-mono text-sm h-[150px] overflow-hidden flex flex-col">
           <div className="bg-[#252526] text-white p-4 rounded-xl shadow-xl font-mono text-sm h-[150px] overflow-hidden flex flex-col whitespace-pre">
