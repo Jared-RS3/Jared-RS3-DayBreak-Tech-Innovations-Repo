@@ -29,9 +29,9 @@ export function HomeSection() {
           <span className="text-pink-500">Working Less</span>
         </motion.h1>
 
-        <motion.h3 className="text-5xl md:text-xl font-bold text-white mb-12">
+        <motion.h3 className="text-xl md:text-3xl lg:text-xl font-bold text-white mb-6 md:mb-12 leading-snug md:leading-tight text-center md:text">
           Smart, simple solutions that{" "}
-          <span className="text-pink-500">saves time</span>,{" "}
+          <span className="text-pink-500">save time</span>,{" "}
           <span className="text-pink-500">cut costs</span> and let you do what
           you <span className="text-pink-500">do best</span>
         </motion.h3>
