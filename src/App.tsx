@@ -423,16 +423,10 @@ function App() {
           </div>
 
           {/* Contact Details */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-12">
-            {/* Left Placeholder (could add a map or image here later) */}
-            <div></div>
+          <div className="space-y-8">
+            <h3 className="text-2xl text-gray-900 mb-6">Contact Information</h3>
 
-            {/* Right Contact Info */}
-            <div className="space-y-8">
-              <h3 className="text-2xl text-gray-900 mb-6">
-                Contact Information
-              </h3>
-
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Email Block */}
               <div className="flex items-start space-x-4">
                 <div className="bg-pink-100 p-3 rounded-lg">
@@ -450,7 +444,7 @@ function App() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Email</h4>
+                  <h4 className="font-semibold text-gray-400">Email</h4>
                   <p className="text-gray-600">
                     Daybreaktechinnovations@gmail.com
                   </p>
@@ -474,10 +468,9 @@ function App() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Address</h4>
+                  <h4 className="font-semibold text-gray-400">Address</h4>
                   <p className="text-gray-600">
                     Cape Town, South Africa & Ho Chi Minh City, Vietnam
-                    <br />
                   </p>
                 </div>
               </div>
