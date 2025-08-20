@@ -330,6 +330,22 @@ function App() {
       description:
         "We developed a custom AI-driven recruitment system for Red Academy, a tech education company focused on transforming raw talent into skilled software engineers. The platform replaces outdated, manual hiring methods with smart automation — from candidate sourcing to shortlisting — dramatically reducing time-to-hire and boosting candidate quality. Tailored workflows and integrations enable the team to focus on nurturing top talent instead of chasing resumes.",
     },
+    {
+      title: "AI-Powered Website & Chatbot for Mobile Coffee Catering",
+      category: "AI & Web",
+      image:
+        "https://www.dropbox.com/scl/fi/rz6h1a9g9ej1pbbzqhvc5/2025-04-06-02.19.30.jpg?rlkey=btln0hyvw1botjfyf2padswep&st=n7xrquj7&raw=1",
+      description:
+        "We designed and developed a responsive website integrated with an AI chatbot to transform customer engagement for a mobile coffee brand. The chatbot enables users to instantly book events, ask questions, and receive real-time responses — all while seamlessly syncing with the clients CRM. From automating bookings and emails to generating invoices, the solution significantly reduced manual workload and improved customer experience.",
+    },
+    {
+      title: "E-commerce Platform for Twigs Vintage",
+      category: "Web",
+      image:
+        "https://www.dropbox.com/scl/fi/0oezbuj97b3w7yht6pxjo/twigs.jpg?rlkey=vrwoqtv4vypr9tgjhgqljh2ns&st=dq8q410w&raw=1",
+      description:
+        'We designed and developed a visually striking, mobile-optimized e-commerce website for Twigs Vintage, a boutique brand selling curated vintage fashion. The site features smooth navigation, bold visuals, and secure checkout — all built on Shopify to give the client full control over inventory, pricing, and promotions. Custom sections like "Collectors Items" and "Our Latest Drop" help highlight exclusive products and drive urgency, while email capture and product filtering enhance the overall shopping experience.',
+    },
 
     {
       title: "Web and CRM Design for Forge Lab Stuidos",
@@ -347,22 +363,7 @@ function App() {
       description:
         "Designed and developed a sleek, professional website for a corporate branding company, showcasing their expertise in creating cohesive brand identities and elevating client presence. The platform highlights services, portfolio, and company values while providing a seamless and engaging user experience.",
     },
-    {
-      title: "AI-Powered Website & Chatbot for Mobile Coffee Catering",
-      category: "AI & Web",
-      image:
-        "https://www.dropbox.com/scl/fi/rz6h1a9g9ej1pbbzqhvc5/2025-04-06-02.19.30.jpg?rlkey=btln0hyvw1botjfyf2padswep&st=n7xrquj7&raw=1",
-      description:
-        "We designed and developed a responsive website integrated with an AI chatbot to transform customer engagement for a mobile coffee brand. The chatbot enables users to instantly book events, ask questions, and receive real-time responses — all while seamlessly syncing with the clients CRM. From automating bookings and emails to generating invoices, the solution significantly reduced manual workload and improved customer experience.",
-    },
-    {
-      title: "E-commerce Platform for Twigs Vintage",
-      category: "Web",
-      image:
-        "https://www.dropbox.com/scl/fi/0oezbuj97b3w7yht6pxjo/twigs.jpg?rlkey=vrwoqtv4vypr9tgjhgqljh2ns&st=dq8q410w&raw=1",
-      description:
-        'We designed and developed a visually striking, mobile-optimized e-commerce website for Twigs Vintage, a boutique brand selling curated vintage fashion. The site features smooth navigation, bold visuals, and secure checkout — all built on Shopify to give the client full control over inventory, pricing, and promotions. Custom sections like "Collectors Items" and "Our Latest Drop" help highlight exclusive products and drive urgency, while email capture and product filtering enhance the overall shopping experience.',
-    },
+    
     {
       title: "DayBreak Tech Innovations Personal App",
       category: "In Production: Web & SaaS",
