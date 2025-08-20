@@ -107,7 +107,7 @@ function PortfolioCard({
       solution:
         "We built a recruitment platform powered by AI that automates sourcing, screens applicants using intelligent filters, and provides structured workflows for interview scheduling and feedback. The system centralizes hiring data and ensures a smooth journey from applicant to accepted trainee.",
       results: [
-        " 60% reduction in manual screening efforts",
+        "60% reduction in manual screening efforts",
         "3x faster candidate onboarding",
         "40% increase in qualified applicant conversion",
       ],
@@ -122,6 +122,30 @@ function PortfolioCard({
         "2x increase in online product views within the first month",
         "35% boost in completed checkouts",
         "120% growth in email subscribers after launch",
+      ],
+      technologies: [],
+    },
+    "Web and CRM Design for Forge Lab Stuidos": {
+      challenge:
+        "Forge Lab Studio needed a digital platform that not only represented their creative ad campaign services but also streamlined client communication and project management.",
+      solution:
+        "We designed and developed a modern, responsive website to showcase their campaigns, content production, and creative portfolio. Alongside the site, we built a custom CRM platform where clients can log in to view upcoming ad shoot schedules, campaign milestones, and deliverables. An admin dashboard allows the studio to manage clients, update shoot timelines, and oversee projects in real-time.",
+      results: [
+        "Improved client experience with 24/7 access to project timelines",
+        "Streamlined studio operations via centralized admin dashboard",
+        "Enhanced brand presence through a sleek, campaign-focused website",
+      ],
+      technologies: [],
+    },
+    "Website for Lumi Branding": {
+      challenge:
+        "Hello Lumi Branding needed a platform to showcase their corporate branding expertise while providing a professional, user-friendly experience for potential clients.",
+      solution:
+        "We designed and developed a sleek, responsive website that highlights their services, portfolio, and brand identity solutions. The platform communicates their creative expertise and professionalism while offering seamless navigation and engagement for clients seeking corporate branding solutions.",
+      results: [
+        "Enhanced online presence and brand credibility",
+        "Showcased services and portfolio effectively to potential clients",
+        "Delivered a clean, professional user experience that aligns with the company's corporate branding design",
       ],
       technologies: [],
     },
@@ -142,8 +166,14 @@ function PortfolioCard({
           layout
           src={project.image}
           alt={project.title}
-          className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105 rounded-t-xl"
+          className={`w-full h-48 transition-transform duration-300 hover:scale-105 rounded-t-xl ${
+            project.title.includes("Forge Lab") ||
+            project.title.includes("Lumi Branding")
+              ? "object-contain bg-white p-4"
+              : "object-cover"
+          }`}
         />
+
         <div className="absolute top-4 right-4 bg-pink-600 text-white px-3 py-1 rounded-full text-sm">
           {project.category}
         </div>
@@ -226,6 +256,7 @@ function PortfolioCard({
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [expandedCard, setExpandedCard] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
   const services = [
     {
@@ -292,6 +323,31 @@ function App() {
 
   const portfolioItems = [
     {
+      title: "AI-Powered Recruitment Platform for Red Academy",
+      category: "AI & Web",
+      image:
+        "https://www.dropbox.com/scl/fi/8n34rzp7mq1gil6aalvp5/red_ac.jpeg?rlkey=mrdb8gjvbjuqj1dozsw84ofn0&st=kf2659nf&raw=1",
+      description:
+        "We developed a custom AI-driven recruitment system for Red Academy, a tech education company focused on transforming raw talent into skilled software engineers. The platform replaces outdated, manual hiring methods with smart automation — from candidate sourcing to shortlisting — dramatically reducing time-to-hire and boosting candidate quality. Tailored workflows and integrations enable the team to focus on nurturing top talent instead of chasing resumes.",
+    },
+
+    {
+      title: "Web and CRM Design for Forge Lab Stuidos",
+      category: "Web",
+      image:
+        "https://www.dropbox.com/scl/fi/ged60ebd4g3j3xkxn0dep/Fls-logo.jpg?rlkey=0yjfnig0eq3xyhy506l5pqtwc&st=2vd0lftj&raw=1",
+      description:
+        "Developed a business-elegant responsive website for Forgelab Studio to showcase their ad campaign services and creative portfolio. Integrated a custom CRM platform where clients can log in to track upcoming ad shoot dates, campaign progress, and deliverables, while the admin dashboard allows the studio to manage clients, schedules, and projects seamlessly",
+    },
+    {
+      title: "Website for Lumi Branding",
+      category: "Web",
+      image:
+        "https://www.dropbox.com/scl/fi/h5c22ipfeg39iqh6bds28/PHOTO-2025-07-10-19-19-34.jpg?rlkey=tyxa6ep6ut3200cyg28yyx4z7&st=nwup7wum&raw=1",
+      description:
+        "Designed and developed a sleek, professional website for a corporate branding company, showcasing their expertise in creating cohesive brand identities and elevating client presence. The platform highlights services, portfolio, and company values while providing a seamless and engaging user experience.",
+    },
+    {
       title: "AI-Powered Website & Chatbot for Mobile Coffee Catering",
       category: "AI & Web",
       image:
@@ -300,20 +356,20 @@ function App() {
         "We designed and developed a responsive website integrated with an AI chatbot to transform customer engagement for a mobile coffee brand. The chatbot enables users to instantly book events, ask questions, and receive real-time responses — all while seamlessly syncing with the clients CRM. From automating bookings and emails to generating invoices, the solution significantly reduced manual workload and improved customer experience.",
     },
     {
-      title: "AI-Powered Recruitment Platform for Red Academy",
-      category: "AI & Web",
-      image:
-        "https://www.dropbox.com/scl/fi/8n34rzp7mq1gil6aalvp5/red_ac.jpeg?rlkey=mrdb8gjvbjuqj1dozsw84ofn0&st=kf2659nf&raw=1",
-      description:
-        "We developed a custom AI-driven recruitment system for Red Academy, a tech education company focused on transforming raw talent into skilled software engineers. The platform replaces outdated, manual hiring methods with smart automation — from candidate sourcing to shortlisting — dramatically reducing time-to-hire and boosting candidate quality. Tailored workflows and integrations enable the team to focus on nurturing top talent instead of chasing resumes.",
-    },
-    {
       title: "E-commerce Platform for Twigs Vintage",
       category: "Web",
       image:
         "https://www.dropbox.com/scl/fi/0oezbuj97b3w7yht6pxjo/twigs.jpg?rlkey=vrwoqtv4vypr9tgjhgqljh2ns&st=dq8q410w&raw=1",
       description:
         'We designed and developed a visually striking, mobile-optimized e-commerce website for Twigs Vintage, a boutique brand selling curated vintage fashion. The site features smooth navigation, bold visuals, and secure checkout — all built on Shopify to give the client full control over inventory, pricing, and promotions. Custom sections like "Collectors Items" and "Our Latest Drop" help highlight exclusive products and drive urgency, while email capture and product filtering enhance the overall shopping experience.',
+    },
+    {
+      title: "DayBreak Tech Innovations Personal App",
+      category: "In Production: Web & SaaS",
+      image:
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      description:
+        "A web-based platform designed for the tourism sector, enabling streamlined booking management, itinerary planning, and enhanced user engagement. The app helps tourism businesses deliver seamless experiences while gaining valuable operational insights.",
     },
   ];
 
@@ -361,6 +417,7 @@ function App() {
       {/* Portfolio Section */}
       <section id="portfolio" className="py-20 px-4 bg-gray-800/50">
         <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -375,23 +432,43 @@ function App() {
             </p>
           </motion.div>
 
+          {/* Portfolio Grid */}
           <motion.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {portfolioItems.map((project, index) => (
-              <PortfolioCard
-                key={project.title}
-                project={project}
-                index={index}
-                isExpanded={expandedCard === project.title}
-                onToggle={() =>
-                  setExpandedCard(
-                    expandedCard === project.title ? null : project.title
-                  )
-                }
-              />
-            ))}
+            {portfolioItems
+              .slice(0, showAll ? portfolioItems.length : 3) // 👈 limit to 3 unless expanded
+              .map((project, index) => (
+                <PortfolioCard
+                  key={project.title}
+                  project={project}
+                  index={index}
+                  isExpanded={expandedCard === project.title}
+                  onToggle={() =>
+                    setExpandedCard(
+                      expandedCard === project.title ? null : project.title
+                    )
+                  }
+                />
+              ))}
+          </motion.div>
+
+          {/* View More / View Less Button */}
+          <motion.div
+            className="text-center mt-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            <motion.button
+              onClick={() => setShowAll(!showAll)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-3 bg-pink-600 text-white font-semibold rounded-xl shadow-lg hover:bg-pink-700 transition-colors"
+            >
+              {showAll ? "View Less" : "View More"}
+            </motion.button>
           </motion.div>
         </div>
       </section>
@@ -547,3 +624,4 @@ function App() {
 }
 
 export default App;
+
