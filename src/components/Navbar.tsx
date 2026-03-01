@@ -19,6 +19,7 @@ export default function Navbar({
     { id: "services", label: "Services" },
     { id: "about", label: "About Us" },
     { id: "portfolio", label: "Portfolio" },
+    { id: "reviews", label: "Reviews" },
     { id: "contact", label: "Contact" },
   ];
 

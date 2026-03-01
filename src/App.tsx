@@ -14,6 +14,7 @@ import React, { useState } from "react";
 import { AboutSection } from "./components/AboutSection";
 import { HomeSection } from "./components/HomeSection";
 import Navbar from "./components/Navbar";
+import { ReviewsSection } from "./components/ReviewsSection";
 
 function ServiceCard({
   icon: Icon,
@@ -473,6 +474,8 @@ function App() {
           </motion.div>
         </div>
       </section>
+
+      <ReviewsSection />
 
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4">
