@@ -187,15 +187,7 @@ export function ReviewsSection() {
           <p className="text-xl text-gray-300">
             Real results from real people — submitted directly through Airtable.
           </p>
-          <a
-            href={airtablePublicUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 mt-3 text-sm text-pink-400 hover:text-pink-300 transition-colors"
-          >
-            <ExternalLink className="w-3.5 h-3.5" />
-            View source table in Airtable
-          </a>
+       
         </motion.div>
 
         {/* States */}
