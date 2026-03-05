@@ -475,7 +475,7 @@ function App() {
         </div>
       </section>
 
-      <ReviewsSection />
+      {/* <ReviewsSection /> */}
 
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4">
