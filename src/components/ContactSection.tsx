@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Instagram, Mail, MapPin } from "lucide-react";
-import { useState } from "react";
 
 const contactInfo = [
   {
@@ -24,22 +23,6 @@ const contactInfo = [
 ];
 
 export function ContactSection() {
-  const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const subject = encodeURIComponent(`Project Inquiry from ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\n\n${form.message}`
-    );
-    window.location.href = `mailto:Daybreaktechinnovations@gmail.com?subject=${subject}&body=${body}`;
-    setSubmitted(true);
-  }
   return (
     <section id="contact" className="py-28 bg-navy-950 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-30" />
@@ -54,7 +37,8 @@ export function ContactSection() {
         >
           <span className="section-badge mb-5 inline-flex">Contact Us</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
-            Let's <span className="gradient-text">build something</span>
+            Let's build something{" "}
+            <span className="text-pink-500">worth building</span>
           </h2>
           <p className="text-lg text-slate-400 max-w-xl mx-auto">
             Tell us about your project and we'll be in touch within 24 hours.
@@ -62,9 +46,27 @@ export function ContactSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Airtable form embed */}
+          <motion.div
+            className="lg:col-span-2 lg:order-2 card-glass p-6"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <iframe
+              src="https://airtable.com/embed/appqw8HIqnTiOGWN2/pagKxDLrxgk2mOPbZ/form"
+              frameBorder="0"
+              width="100%"
+              height="520"
+              style={{ background: "transparent", border: "none" }}
+              title="Contact Form"
+            />
+          </motion.div>
+
           {/* Contact info cards */}
           <motion.div
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-4 lg:order-1"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -111,84 +113,6 @@ export function ContactSection() {
             </div>
           </motion.div>
 
-          {/* Contact form */}
-          <motion.div
-            className="lg:col-span-2 card-glass p-6"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            {submitted ? (
-              <div className="flex flex-col items-center justify-center h-full py-16 text-center">
-                <p className="text-2xl font-bold text-white mb-2">Thanks for reaching out!</p>
-                <p className="text-slate-400 text-sm">We'll get back to you within 24 hours.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-                      Name <span className="text-pink-400">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Your name"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-pink-500/50 focus:ring-1 focus:ring-pink-500/30 transition"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-                      Email <span className="text-pink-400">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="your@email.com"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-pink-500/50 focus:ring-1 focus:ring-pink-500/30 transition"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-                    Company / Project Name
-                  </label>
-                  <input
-                    type="text"
-                    name="company"
-                    value={form.company}
-                    onChange={handleChange}
-                    placeholder="Acme Corp"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-pink-500/50 focus:ring-1 focus:ring-pink-500/30 transition"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-                    Message <span className="text-pink-400">*</span>
-                  </label>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    required
-                    rows={6}
-                    placeholder="Tell us about your project..."
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-pink-500/50 focus:ring-1 focus:ring-pink-500/30 transition resize-none"
-                  />
-                </div>
-                <button type="submit" className="btn-primary w-full py-3 text-sm">
-                  Send Message
-                </button>
-              </form>
-            )}
-          </motion.div>
         </div>
       </div>
     </section>

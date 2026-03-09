@@ -12,112 +12,6 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function ApplicationForm() {
-  const [form, setForm] = useState({ name: "", email: "", role: "", portfolio: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const subject = encodeURIComponent(`Job Application – ${form.role || "General"} – ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nRole: ${form.role}\nPortfolio/LinkedIn: ${form.portfolio}\n\n${form.message}`
-    );
-    window.location.href = `mailto:Daybreaktechinnovations@gmail.com?subject=${subject}&body=${body}`;
-    setSubmitted(true);
-  }
-
-  if (submitted) {
-    return (
-      <div className="flex flex-col items-center justify-center py-16 text-center">
-        <p className="text-2xl font-bold text-white mb-2">Application sent!</p>
-        <p className="text-slate-400 text-sm">We'll review your details and be in touch soon.</p>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-            Full Name <span className="text-blue-400">*</span>
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-            placeholder="Your full name"
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/30 transition"
-          />
-        </div>
-        <div>
-          <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-            Email <span className="text-blue-400">*</span>
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            placeholder="your@email.com"
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/30 transition"
-          />
-        </div>
-      </div>
-      <div>
-        <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-          Role You're Applying For
-        </label>
-        <input
-          type="text"
-          name="role"
-          value={form.role}
-          onChange={handleChange}
-          placeholder="e.g. Senior Full Stack Developer"
-          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/30 transition"
-        />
-      </div>
-      <div>
-        <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-          Portfolio / LinkedIn
-        </label>
-        <input
-          type="text"
-          name="portfolio"
-          value={form.portfolio}
-          onChange={handleChange}
-          placeholder="https://..."
-          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/30 transition"
-        />
-      </div>
-      <div>
-        <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
-          Tell us about yourself <span className="text-blue-400">*</span>
-        </label>
-        <textarea
-          name="message"
-          value={form.message}
-          onChange={handleChange}
-          required
-          rows={5}
-          placeholder="Share your experience, what excites you about Daybreak, and anything else relevant..."
-          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/30 transition resize-none"
-        />
-      </div>
-      <button type="submit" className="btn-primary w-full py-3 text-sm">
-        Submit Application
-      </button>
-    </form>
-  );
-}
-
 function JobCard({
   title,
   location,
@@ -339,7 +233,14 @@ export default function Careers() {
               Don't see the right role? Send us your details and we'll reach out
               when a match opens up.
             </p>
-            <ApplicationForm />
+            <iframe
+              src="https://airtable.com/embed/appqw8HIqnTiOGWN2/pagO91BGuPKIjKklh/form"
+              frameBorder="0"
+              width="100%"
+              height="533"
+              style={{ background: "transparent", border: "none" }}
+              title="Careers Application Form"
+            />
           </div>
         </div>
       </div>
