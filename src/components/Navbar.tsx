@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Code2, Menu, X } from "lucide-react";
+import { Menu, X, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "react-scroll";
@@ -40,15 +40,11 @@ export default function Navbar() {
             duration={600}
             className="flex items-center gap-2.5 cursor-pointer select-none"
           >
-            <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-              className="flex items-center justify-center"
-            >
-              <Code2 className="w-8 h-8 text-pink-500" />
-            </motion.div>
+            <div className="flex items-center justify-center w-8 h-8 bg-pink-600 rounded-lg shadow-lg shadow-pink-500/30">
+              <Zap className="w-4 h-4 text-white" fill="white" />
+            </div>
             <span className="text-[17px] font-bold text-white tracking-tight">
-              DayBreak<span className="text-pink-500 font-bold"> Tech-Innovations</span>
+              Daybreak<span className="text-pink-400 font-normal"> Tech</span>
             </span>
           </Link>
 

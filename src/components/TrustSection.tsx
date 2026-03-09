@@ -54,7 +54,7 @@ export function TrustSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <div className="text-4xl lg:text-5xl font-extrabold text-pink-500 mb-1.5">
+              <div className="text-4xl lg:text-5xl font-extrabold gradient-text mb-1.5">
                 {m.value}
               </div>
               <div className="text-sm font-semibold text-white mb-1">{m.label}</div>
@@ -67,40 +67,27 @@ export function TrustSection() {
         <div className="w-full h-px bg-white/5 mb-12" />
 
         {/* Tech stack */}
-        {/* Marquee — two rows, opposite directions */}
-        <div className="space-y-3">
-          <p className="text-xs font-semibold tracking-widest uppercase text-slate-600 mb-5 text-center">
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="text-xs font-semibold tracking-widest uppercase text-slate-600 mb-6">
             Technologies We Work With
           </p>
-
-          {/* Row 1 — left */}
-          <div className="overflow-hidden mask-fade-x">
-            <div className="flex animate-marquee whitespace-nowrap">
-              {[...techStack, ...techStack].map((tech, i) => (
-                <span key={i} className="inline-flex items-center gap-3 mx-3 shrink-0">
-                  <span className="px-4 py-2 text-sm font-medium text-slate-400 bg-navy-800 border border-navy-700/60 rounded-lg hover:border-pink-500/40 hover:text-white transition-all duration-200 cursor-default">
-                    {tech}
-                  </span>
-                  <span className="text-pink-500/25 text-xs">◆</span>
-                </span>
-              ))}
-            </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {techStack.map((tech) => (
+              <span
+                key={tech}
+                className="px-4 py-2 text-sm font-medium text-slate-400 bg-navy-800 border border-navy-500 rounded-lg hover:border-pink-500/40 hover:text-slate-200 transition-all duration-200"
+              >
+                {tech}
+              </span>
+            ))}
           </div>
-
-          {/* Row 2 — right */}
-          <div className="overflow-hidden mask-fade-x">
-            <div className="flex animate-marquee-reverse whitespace-nowrap">
-              {[...techStack.slice().reverse(), ...techStack.slice().reverse()].map((tech, i) => (
-                <span key={i} className="inline-flex items-center gap-3 mx-3 shrink-0">
-                  <span className="px-4 py-2 text-sm font-medium text-slate-500 bg-navy-800/60 border border-navy-700/40 rounded-lg hover:border-pink-500/30 hover:text-slate-300 transition-all duration-200 cursor-default">
-                    {tech}
-                  </span>
-                  <span className="text-purple-500/20 text-xs">◆</span>
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -57,12 +57,6 @@
   .animation-delay-4000 { animation-delay: 4s; }
 }
 
-/* Custom cursor */
-.custom-cursor,
-.custom-cursor * {
-  cursor: none !important;
-}
-
 /* Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: #111827; }
