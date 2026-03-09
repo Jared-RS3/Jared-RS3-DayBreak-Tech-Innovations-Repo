@@ -12,25 +12,42 @@ const AIRTABLE_API_URL =
   `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}` +
   `?view=${AIRTABLE_VIEW_ID}`;
 
-// Flexible field-name matching — covers whatever column names you used
+// ── Placeholder reviews (shown when no Airtable token is configured) ────────
+const PLACEHOLDER_REVIEWS: Review[] = [
+  {
+    id: "p1",
+    name: "",
+    role: "Marketing Team, Naughty Berry",
+    comment:
+      "Daybreak built a powerful giveaway platform that helped us run engaging promotions and grow our audience quickly. The system was smooth, easy for our customers to use, and gave us valuable insights into participation and engagement. It made running campaigns far more efficient and helped us expand our reach online",
+    rating: 5,
+  },
+  {
+    id: "p2",
+    name: "",
+    role: "Founder of Lumi Branding",
+    comment:
+      "The Daybreak team exceeded our expectations. Their creative approach and advanced tech solutions helped elevate our brand online and gave us tools that save hours of manual work every week",
+    rating: 5,
+  },
+  {
+    id: "p3",
+    name: "",
+    role: "Founder of EON General",
+    comment:
+      "We partnered with Daybreak Tech Innovations to develop our new website and implement a custom CRM system, and the results exceeded our expectations. The website is modern, fast, and perfectly represents our brand, while the CRM has streamlined how we manage leads, clients, and internal workflows",
+    rating: 5,
+  },
+];
+
 const NAME_KEYS = ["Name", "Client Name", "Reviewer", "Full Name"];
 const COMMENT_KEYS = ["Comments", "Comment", "Review", "Feedback", "Message", "Notes"];
 const RATING_KEYS = ["Rating", "Stars", "Score", "Star Rating"];
 const ROLE_KEYS = ["Role", "Position", "Title", "Job Title", "Company"];
 
 // ── Types ────────────────────────────────────────────────────────────────────
-type AirtableRow = {
-  id: string;
-  fields: Record<string, unknown>;
-};
-
-type Review = {
-  id: string;
-  name: string;
-  comment: string;
-  rating: number;
-  role?: string;
-};
+type AirtableRow = { id: string; fields: Record<string, unknown> };
+type Review = { id: string; name: string; comment: string; rating: number; role?: string };
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function pick(fields: Record<string, unknown>, keys: string[]): string | undefined {
@@ -67,12 +84,12 @@ function mapRow(row: AirtableRow): Review | null {
   };
 }
 
-// ── Sub-components ─────────────────────────────────────────────────────────────
+// ── Sub-components ────────────────────────────────────────────────────────────
 function StarRow({ count }: { count: number }) {
   return (
-    <div className="flex gap-0.5 mb-4">
+    <div className="flex gap-0.5 mb-3">
       {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
       ))}
     </div>
   );
@@ -81,21 +98,22 @@ function StarRow({ count }: { count: number }) {
 function ReviewCard({ review, index }: { review: Review; index: number }) {
   return (
     <motion.div
-      className="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 flex flex-col"
+      className="card-glass p-6 flex flex-col"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      whileHover={{ scale: 1.02 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.07 }}
+      whileHover={{ y: -3, transition: { duration: 0.2 } }}
     >
-      <Quote className="w-8 h-8 text-pink-500 mb-4 opacity-80" />
+      <Quote className="w-7 h-7 text-pink-400/40 mb-4" />
       <StarRow count={review.rating} />
-      <p className="text-gray-300 flex-1 mb-6 leading-relaxed">
+      <p className="text-sm text-slate-300 flex-1 mb-5 leading-relaxed italic">
         "{review.comment}"
       </p>
-      <div className="border-t border-gray-700 pt-4">
-        <p className="font-semibold text-white">{review.name}</p>
+      <div className="border-t border-white/5 pt-4">
+        <p className="text-sm font-semibold text-white">{review.name}</p>
         {review.role && (
-          <p className="text-sm text-gray-400">{review.role}</p>
+          <p className="text-xs text-slate-500 mt-0.5">{review.role}</p>
         )}
       </div>
     </motion.div>
@@ -110,7 +128,6 @@ export function ReviewsSection() {
 
   useEffect(() => {
     if (!AIRTABLE_TOKEN) {
-      setError("VITE_AIRTABLE_TOKEN is not set in your .env file.");
       setLoading(false);
       return;
     }
@@ -119,10 +136,8 @@ export function ReviewsSection() {
 
     async function fetchReviews() {
       try {
-        // Paginate through all records
         const allReviews: Review[] = [];
         let offset: string | undefined;
-
         do {
           const url = offset
             ? `${AIRTABLE_API_URL}&offset=${offset}`
@@ -130,9 +145,7 @@ export function ReviewsSection() {
 
           const res = await fetch(url, {
             signal: controller.signal,
-            headers: {
-              Authorization: `Bearer ${AIRTABLE_TOKEN}`,
-            },
+            headers: { Authorization: `Bearer ${AIRTABLE_TOKEN}` },
           });
 
           if (!res.ok) {
@@ -152,7 +165,6 @@ export function ReviewsSection() {
             const review = mapRow(row);
             if (review) allReviews.push(review);
           }
-
           offset = data.offset;
         } while (offset);
 
@@ -172,56 +184,84 @@ export function ReviewsSection() {
   const airtablePublicUrl = `https://airtable.com/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}/${AIRTABLE_VIEW_ID}`;
 
   return (
-    <section id="reviews" className="py-20 px-4 bg-gray-800/50">
-      <div className="max-w-7xl mx-auto">
+    <section id="reviews" className="py-28 bg-navy-900 relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid opacity-30" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl font-bold text-white mb-4">
-            What Our Clients Say
+          <span className="section-badge mb-5 inline-flex">Client Reviews</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
+            Trusted by teams who{" "}
+            <span className="text-pink-500">ship with us</span>
           </h2>
-          <p className="text-xl text-gray-300">
-            Real results from real people — submitted directly through Airtable.
+          <p className="text-lg text-slate-400 max-w-xl mx-auto">
+            Real feedback from the people we've worked with, submitted directly and updated live.
           </p>
-       
         </motion.div>
 
-        {/* States */}
+        {/* Loading skeletons */}
         {loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div
-                key={i}
-                className="bg-gray-800 rounded-xl border border-gray-700 h-52 animate-pulse"
-              />
+              <div key={i} className="card-glass h-52 animate-pulse" />
             ))}
           </div>
         )}
 
-        {!loading && error && (
-          <div className="rounded-xl border border-red-500/30 bg-red-900/20 p-5 text-red-300 text-sm">
-            {error}
+        {/* Placeholder reviews (no token configured) */}
+        {!loading && !AIRTABLE_TOKEN && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {PLACEHOLDER_REVIEWS.map((r, i) => (
+              <ReviewCard key={r.id} review={r} index={i} />
+            ))}
           </div>
         )}
 
-        {!loading && !error && reviews.length === 0 && (
-          <p className="text-gray-400 text-center">
-            No reviews found in the Airtable view yet.
-          </p>
+        {/* Error */}
+        {error && (
+          <div className="text-center">
+            <p className="text-sm text-red-400 mb-3">{error}</p>
+            <a
+              href={airtablePublicUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-pink-400 hover:text-pink-300 transition-colors"
+            >
+              View on Airtable <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
         )}
 
+        {/* Reviews grid */}
         {!loading && !error && reviews.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.map((review, index) => (
-              <ReviewCard key={review.id} review={review} index={index} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {reviews.map((r, i) => (
+              <ReviewCard key={r.id} review={r} index={i} />
             ))}
           </div>
         )}
+
+        {/* Leave a review CTA */}
+        {/* {!loading && (
+          <div className="text-center mt-12">
+            <a
+              href={airtablePublicUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary text-sm px-6 py-2.5 inline-flex"
+            >
+              Leave a Review <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        )} */}
       </div>
     </section>
   );
 }
+

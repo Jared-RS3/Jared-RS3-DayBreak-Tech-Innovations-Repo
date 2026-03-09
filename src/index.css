@@ -2,40 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes blob {
-  0% {
-    transform: translate(0px, 0px) scale(1);
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, sans-serif;
   }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1);
+  body {
+    background-color: #111827;
+    color: #F8FAFC;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-.animate-blob {
-  animation: blob 7s infinite;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-pink-600 text-white font-semibold rounded-xl transition-all duration-200;
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.25);
+  }
+  .btn-primary:hover {
+    @apply bg-pink-500;
+    box-shadow: 0 0 35px rgba(236, 72, 153, 0.45);
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 border border-pink-500/40 text-pink-400 font-semibold rounded-xl hover:bg-pink-500/10 hover:border-pink-400/60 transition-all duration-200;
+  }
+  .card-glass {
+    background: rgba(31, 41, 55, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    @apply border border-white/5 rounded-2xl;
+  }
+  .section-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold tracking-widest uppercase text-pink-400 border border-pink-500/20 rounded-full;
+    background: rgba(236, 72, 153, 0.07);
+  }
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #F472B6 0%, #C084FC 60%, #818CF8 100%);
+  }
 }
 
-.animation-delay-2000 {
-  animation-delay: 2s;
+@layer utilities {
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(236, 72, 153, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(236, 72, 153, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-600 { animation-delay: 600ms; }
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-4000 { animation-delay: 4s; }
 }
 
-.animation-delay-4000 {
-  animation-delay: 4s;
+/* Custom cursor */
+.custom-cursor,
+.custom-cursor * {
+  cursor: none !important;
 }
 
-body {
-  @apply bg-gray-900 text-white;
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #111827; }
+::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #EC4899; }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Selection */
+::selection { background: rgba(236, 72, 153, 0.3); color: #fff; }
 
 .blob {
   position: absolute;

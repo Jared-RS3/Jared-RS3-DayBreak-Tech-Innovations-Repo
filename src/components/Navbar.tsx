@@ -1,152 +1,155 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Code2, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "react-scroll";
 
-export default function Navbar({
-  darkMode,
-  setDarkMode,
-}: {
-  darkMode: boolean;
-  setDarkMode: (value: boolean) => void;
-}) {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const navItems = [
-    { id: "home", label: "Home" },
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const navLinks = [
     { id: "services", label: "Services" },
-    { id: "about", label: "About Us" },
     { id: "portfolio", label: "Portfolio" },
+    { id: "process", label: "Process" },
+    { id: "about", label: "About" },
     { id: "reviews", label: "Reviews" },
     { id: "contact", label: "Contact" },
   ];
 
   return (
     <nav
-      className={`fixed w-full shadow-md z-50 ${
-        darkMode ? "bg-gray-800" : "bg-white"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-navy-900/90 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-black/30"
+          : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-[70px]">
+          {/* Logo */}
           <Link
             to="home"
-            smooth={true}
-            duration={500}
-            className="flex items-center cursor-pointer"
+            smooth
+            duration={600}
+            className="flex items-center gap-2.5 cursor-pointer select-none"
           >
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.5 }}
+              className="flex items-center justify-center"
             >
-              <Code2 className="h-8 w-8 text-pink-600" />
+              <Code2 className="w-8 h-8 text-pink-500" />
             </motion.div>
-            <span
-              className={`ml-2 text-xl font-bold ${
-                darkMode ? "text-white" : "text-gray-800"
-              }`}
-            >
-              DayBreak Tech-Innovations
+            <span className="text-[17px] font-bold text-white tracking-tight">
+              DayBreak<span className="text-pink-500 font-bold"> Tech-Innovations</span>
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-center gap-0.5">
+            {navLinks.map((link) => (
               <Link
-                key={item.id}
-                to={item.id}
-                spy={true}
-                smooth={true}
-                duration={500}
-                className={`hover:text-pink-600 transition-colors duration-300 cursor-pointer ${
-                  darkMode ? "text-gray-300" : "text-gray-700"
-                }`}
-                activeClass="text-pink-600"
+                key={link.id}
+                to={link.id}
+                spy
+                smooth
+                duration={600}
+                offset={-64}
+                className="px-3.5 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-150 cursor-pointer font-medium"
+                activeClass="!text-white bg-white/5"
               >
-                {item.label}
+                {link.label}
               </Link>
             ))}
-
             <RouterLink
               to="/careers"
-              className={`hover:text-pink-600 transition-colors duration-300 cursor-pointer ${
-                darkMode ? "text-gray-300" : "text-gray-700"
-              }`}
+              className="px-3.5 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-150 font-medium"
             >
               Careers
             </RouterLink>
-
-            <a href="#contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-colors duration-300"
-              >
-                Get Started
-              </motion.button>
-            </a>
           </div>
 
-          <div className="md:hidden flex items-center space-x-4">
+          {/* CTA + Mobile Toggle */}
+          <div className="flex items-center gap-3">
+            <Link
+              to="contact"
+              smooth
+              duration={600}
+              offset={-64}
+              className="hidden md:inline-flex btn-primary text-sm px-5 py-2 cursor-pointer"
+            >
+              Book a Call
+            </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`inline-flex items-center justify-center p-2 rounded-md hover:text-pink-600 focus:outline-none ${
-                darkMode ? "text-white" : "text-gray-700"
-              }`}
+              className="md:hidden p-2 text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all"
+              aria-label="Toggle menu"
             >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
+      </div>
 
-        <motion.div
-          initial={false}
-          animate={{ height: isOpen ? "auto" : 0 }}
-          className={`md:hidden overflow-hidden`}
-        >
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.id}
-                to={item.id}
-                spy={true}
-                smooth={true}
-                duration={500}
-                className={`block px-3 py-2 rounded-md hover:text-pink-600 hover:bg-pink-50 cursor-pointer ${
-                  darkMode ? "text-gray-300 hover:bg-gray-700" : "text-gray-700"
-                }`}
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden overflow-hidden bg-navy-900/95 backdrop-blur-xl border-b border-white/5"
+          >
+            <div className="px-4 py-4 space-y-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.id}
+                  to={link.id}
+                  spy
+                  smooth
+                  duration={600}
+                  offset={-64}
+                  className="block px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all cursor-pointer font-medium"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <RouterLink
+                to="/careers"
+                className="block px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all font-medium"
                 onClick={() => setIsOpen(false)}
               >
-                {item.label}
-              </Link>
-            ))}
-            <RouterLink
-              to="/careers"
-              className={`block px-3 py-2 rounded-md hover:text-pink-600 hover:bg-pink-50 cursor-pointer ${
-                darkMode ? "text-gray-300 hover:bg-gray-700" : "text-gray-700"
-              }`}
-              onClick={() => setIsOpen(false)}
-            >
-              Careers
-            </RouterLink>
-            <a href="#contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-colors duration-300"
-              >
-                Get Started
-              </motion.button>
-            </a>
-          </div>
-        </motion.div>
-      </div>
+                Careers
+              </RouterLink>
+              <div className="pt-2">
+                <Link
+                  to="contact"
+                  smooth
+                  duration={600}
+                  offset={-64}
+                  className="block cursor-pointer"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <span className="btn-primary w-full flex justify-center text-sm py-2.5">
+                    Book a Call
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
+
+

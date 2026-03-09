@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "cobe": "^0.6.5",
     "framer-motion": "^11.0.8",
+    "lenis": "^1.3.18",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-countup": "^6.5.0",

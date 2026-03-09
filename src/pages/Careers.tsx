@@ -4,10 +4,10 @@ import {
   ChevronDown,
   ChevronUp,
   Code,
-  Code2,
   Coffee,
   MapPin,
   Users,
+  Zap,
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -30,34 +30,39 @@ function JobCard({
   return (
     <motion.div
       layout
-      className="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700"
+      className="card-glass p-6"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
       <div className="flex justify-between items-start mb-4">
         <div>
-          <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
-          <div className="flex items-center gap-4 text-gray-400">
-            <div className="flex items-center">
-              <MapPin className="w-4 h-4 mr-1" />
+          <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
+          <div className="flex flex-wrap items-center gap-4 text-slate-400 text-sm">
+            <div className="flex items-center gap-1.5">
+              <MapPin className="w-4 h-4" />
               {location}
             </div>
-            <div className="flex items-center">
-              <Briefcase className="w-4 h-4 mr-1" />
+            <div className="flex items-center gap-1.5">
+              <Briefcase className="w-4 h-4" />
               {type}
             </div>
           </div>
         </div>
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="text-pink-500 hover:text-pink-400"
+          className="p-1.5 text-blue-400 hover:text-blue-300 transition-colors flex-shrink-0"
         >
-          {isExpanded ? <ChevronUp /> : <ChevronDown />}
+          {isExpanded ? (
+            <ChevronUp className="w-5 h-5" />
+          ) : (
+            <ChevronDown className="w-5 h-5" />
+          )}
         </button>
       </div>
 
-      <p className="text-gray-300 mb-4">{description}</p>
+      <p className="text-sm text-slate-400 leading-relaxed mb-4">{description}</p>
 
       {isExpanded && (
         <motion.div
@@ -67,10 +72,13 @@ function JobCard({
           className="space-y-4"
         >
           <div>
-            <h4 className="font-semibold text-white mb-2">Requirements:</h4>
-            <ul className="list-disc list-inside text-gray-300 space-y-2">
+            <h4 className="text-sm font-semibold text-white mb-2">Requirements</h4>
+            <ul className="space-y-1.5">
               {requirements.map((req, index) => (
-                <li key={index}>{req}</li>
+                <li key={index} className="flex items-start gap-2 text-sm text-slate-400">
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
+                  {req}
+                </li>
               ))}
             </ul>
           </div>
@@ -79,7 +87,7 @@ function JobCard({
               const element = document.getElementById("careers-form");
               element?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 mt-4"
+            className="btn-primary text-sm px-5 py-2 mt-2"
           >
             Apply Now
           </button>
@@ -133,128 +141,110 @@ export default function Careers() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <nav className="fixed w-full shadow-md z-50 bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between h-16">
-            <Link to="/" className="flex items-center cursor-pointer">
-              <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Code2 className="h-8 w-8 text-pink-600" />
-              </motion.div>
-              <span className="ml-2 text-xl font-bold text-white">
-                DayBreak Tech-Innovations
+    <div className="min-h-screen bg-navy-900">
+      {/* Minimal nav */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-navy-900/90 backdrop-blur-xl border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 h-16">
+            <Link to="/" className="flex items-center gap-2.5 cursor-pointer">
+              <div className="flex items-center justify-center w-8 h-8 bg-blue-600 rounded-lg">
+                <Zap className="w-4 h-4 text-white" fill="white" />
+              </div>
+              <span className="text-[17px] font-bold text-white tracking-tight">
+                Daybreak<span className="text-blue-400 font-normal"> Tech</span>
               </span>
             </Link>
+            <span className="text-slate-700">/</span>
+            <span className="text-sm text-slate-400 font-medium">Careers</span>
           </div>
         </div>
       </nav>
 
-      <section className="py-20 px-4 pt-24">
-        <div className="max-w-7xl mx-auto">
+      <div className="pt-24 pb-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          {/* Header */}
           <div className="text-center mb-16">
-            <motion.h2
-              className="text-4xl font-bold text-white mb-4"
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              Join Our Team
-            </motion.h2>
-            <motion.p
-              className="text-xl text-gray-300 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              We're always looking for talented individuals who are passionate
-              about technology and innovation.
-            </motion.p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <motion.div
-              className="text-center p-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="bg-pink-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-pink-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-white">
-                Collaborative Culture
-              </h3>
-              <p className="text-gray-400">
-                Work with passionate people who support and inspire each other.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="text-center p-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="bg-pink-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Coffee className="w-8 h-8 text-pink-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-white">
-                Work-Life Balance
-              </h3>
-              <p className="text-gray-400">
-                Flexible hours, remote work options, and focus on wellbeing.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="text-center p-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="bg-pink-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Code className="w-8 h-8 text-pink-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-white">
-                Growth & Learning
-              </h3>
-              <p className="text-gray-400">
-                Continuous learning opportunities and career development
-                support.
+              <span className="section-badge mb-5 inline-flex">Join Our Team</span>
+              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-5">
+                Build the future of{" "}
+                <span className="text-pink-500">tech with us</span>
+              </h1>
+              <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                We're always looking for talented people who are passionate about
+                technology, innovation, and making a real impact.
               </p>
             </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 mb-16">
-            {jobListings.map((job, index) => (
-              <JobCard key={index} {...job} />
+          {/* Culture pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
+            {[
+              {
+                icon: Users,
+                title: "Collaborative Culture",
+                desc: "Work with passionate people who support and inspire each other.",
+              },
+              {
+                icon: Coffee,
+                title: "Work-Life Balance",
+                desc: "Flexible hours, remote options, and a real focus on wellbeing.",
+              },
+              {
+                icon: Code,
+                title: "Growth & Learning",
+                desc: "Continuous learning opportunities and clear career progression.",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                className="card-glass p-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-500/10 rounded-xl mb-4">
+                  <item.icon className="w-6 h-6 text-blue-400" />
+                </div>
+                <h3 className="text-base font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+              </motion.div>
             ))}
           </div>
 
-          <div className="pt-8 border-t border-gray-800 text-center">
-            <div className="flex justify-center">
-              <div className="w-full max-w-3xl px-4">
-                <iframe
-                  id="careers-form"
-                  className="airtable-embed"
-                  src="https://airtable.com/embed/appqw8HIqnTiOGWN2/pagO91BGuPKIjKklh/form"
-                  frameBorder="0"
-                  width="100%"
-                  height="533"
-                  style={{
-                    background: "transparent",
-                    border: "1px solid #ccc",
-                  }}
-                  title="Contact Form"
-                ></iframe>
-              </div>
+          {/* Open positions */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-bold text-white mb-6">Open Positions</h2>
+            <div className="space-y-4">
+              {jobListings.map((job, index) => (
+                <JobCard key={index} {...job} />
+              ))}
             </div>
           </div>
+
+          {/* Application form */}
+          <div id="careers-form" className="card-glass p-6">
+            <h2 className="text-xl font-bold text-white mb-1.5">Apply Now</h2>
+            <p className="text-sm text-slate-400 mb-6">
+              Don't see the right role? Send us your details and we'll reach out
+              when a match opens up.
+            </p>
+            <iframe
+              src="https://airtable.com/embed/appqw8HIqnTiOGWN2/pagO91BGuPKIjKklh/form"
+              frameBorder="0"
+              width="100%"
+              height="533"
+              style={{ background: "transparent", border: "none" }}
+              title="Careers Application Form"
+            />
+          </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
+
