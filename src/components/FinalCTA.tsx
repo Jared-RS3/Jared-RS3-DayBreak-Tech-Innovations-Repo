@@ -25,9 +25,12 @@ export function FinalCTA() {
           transition={{ duration: 0.6 }}
         >
           <span className="section-badge mb-8 inline-flex">Get Started</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-extrabold text-white leading-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-extrabold text-white leading-tight mb-8">
             Let's build something{" "}
-            <span className="text-pink-500">worth building</span>
+            <span className="text-pink-500">
+              worth
+              <span className="block mt-5">building</span>
+            </span>
           </h2>
           <p className="text-lg text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
             Join 50+ startups and businesses who've trusted Daybreak to build
