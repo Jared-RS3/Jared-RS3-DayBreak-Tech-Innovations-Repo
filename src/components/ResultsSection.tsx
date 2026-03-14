@@ -15,6 +15,24 @@ type PortfolioItem = {
 
 const portfolioItems: PortfolioItem[] = [
   {
+    title: "Giveaway Platform for Naughty Berry",
+    category: "Web",
+    metric: "3× user engagement",
+    image:
+      "https://www.dropbox.com/scl/fi/6bccrvv7jwqqsgt8fzddx/market.jpg?rlkey=w72adgysog811o137zjfz7fy0&st=vcu9xetv&dl=0&raw=1",
+    description:
+      "A dynamic, mobile-optimized giveaway platform for Naughty Berry, designed to run interactive promotions, capture leads, and engage their audience in a fun, seamless way.",
+    challenge:
+      "The client wanted a system that could host giveaways, track participation, and collect leads efficiently while keeping users entertained and engaged.",
+    solution:
+      "We built a fully responsive giveaway platform with interactive entry forms, automated winner selection, email capture, and real-time engagement tracking, all integrated into their existing digital ecosystem.",
+    results: [
+      "3× increase in user engagement during promotions",
+      "50% growth in lead capture compared to previous campaigns",
+      "Highly shareable campaigns that boosted brand awareness online",
+    ],
+  },
+  {
     title: "AI-Powered Recruitment Platform for Red Academy",
     category: "AI & Web",
     metric: "60% faster hiring",
@@ -50,24 +68,7 @@ const portfolioItems: PortfolioItem[] = [
       "30% increase in booking conversion rate",
     ],
   },
-  {
-    title: "Giveaway Platform for Naughty Berry",
-    category: "Web",
-    metric: "3× user engagement",
-    image:
-      "https://www.dropbox.com/scl/fi/6bccrvv7jwqqsgt8fzddx/market.jpg?rlkey=w72adgysog811o137zjfz7fy0&st=vcu9xetv&dl=0&raw=1",
-    description:
-      "A dynamic, mobile-optimized giveaway platform for Naughty Berry, designed to run interactive promotions, capture leads, and engage their audience in a fun, seamless way.",
-    challenge:
-      "The client wanted a system that could host giveaways, track participation, and collect leads efficiently while keeping users entertained and engaged.",
-    solution:
-      "We built a fully responsive giveaway platform with interactive entry forms, automated winner selection, email capture, and real-time engagement tracking, all integrated into their existing digital ecosystem.",
-    results: [
-      "3× increase in user engagement during promotions",
-      "50% growth in lead capture compared to previous campaigns",
-      "Highly shareable campaigns that boosted brand awareness online",
-    ],
-  },
+  
   {
     title: "E-commerce Platform for Twigs Vintage",
     category: "Web",
