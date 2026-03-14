@@ -5,8 +5,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "Daybreaktechinnovations@gmail.com",
-    href: "mailto:Daybreaktechinnovations@gmail.com",
+    value: "contact@daybreaktechinnovations.com",
+    href: "mailto:contact@daybreaktechinnovations.com",
   },
   {
     icon: MapPin,
@@ -17,8 +17,8 @@ const contactInfo = [
   {
     icon: Instagram,
     label: "Instagram",
-    value: "@daybreak_tech_innovations",
-    href: "https://www.instagram.com/daybreak_tech_innovations?igsh=N29xbDNyM3U0ejZp",
+    value: "@daybreakweb_",
+    href: "https://www.instagram.com/daybreakweb_?igsh=N29xbDNyM3U0ejZp",
   },
 ];
 
